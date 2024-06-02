@@ -3,28 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <title>ToDo-List</title>
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-    <main>
-        <div class="container">
+    <main class="container">
+        <div class="flex">
             <div class="box">
                 <h1 class="box-date"><%= currentDate %></h1>
                 <div class="box-form">
                     <form action="/" method="POST">
-                        <input type="text" id="todo" name="todo">
-                        <button>Submit</button>
+                        <div class="box-form__input">
+                            <input type="text" id="todo" name="todo" autofocus>
+                            <button>+</button>
+                        </div>
                     </form>
                 </div>
                 <div class="box-list">
-                    <ul>
-                        <% for (let todo of todoList) { %>
-                        <li><%= todo %></li>
-                        <% } %>
-                    </ul>
+                    <% for (let todo of todoList) { %>
+                        <div class="box-list__item">
+                            <input type="checkbox" name="task">
+                            <p><%= todo %></p>
+                        </div>
+                    <% } %>
                 </div>
             </div>
-        </div>
+            <div class="box box-timer">
+                <div class="timer">
+                    <div class="timer-output">00:00</div>
+                    <div class="timer-btn">
+                        <button class="btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+                                <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>         
     </main>
+    <script src="/js/timer.js"></script>
+    <script src="/js/index.js"></script>
 </body>
 </html>

@@ -21,3 +21,143 @@ input, button, textarea, select {
 p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
 }
+
+ul {
+    list-style: none;
+}
+
+/*  */
+:root {
+    --ff-caveat: "Caveat", cursive;
+}
+
+body {
+    font-family: var(--ff-caveat);
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: minmax(1rem, 5rem) minmax(0, 1fr) minmax(1rem, 5rem); /* hatte vorher auto statt minmax (1rem, 5rem)*/
+    grid-template-rows: minmax(0, 20%) 1fr minmax(0, 20%);
+}
+
+main {
+    grid-area: 2 / 2 / span 1 / span 1;
+}
+
+.flex {
+    display: flex;
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+/*  */
+
+input[type="text"] {
+    flex-grow: 1;
+    border-radius: 40px;
+    padding: .5em 1em;
+    border-color: #8338ec;
+}
+
+input[type="text"]:focus {
+    outline: none;
+}
+
+input[type="text"] + button, .btn {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    padding: 0 1em;
+    background-color: transparent;
+    border-color: #3a0ca3;
+}
+
+input[type="text"] + button:hover {
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    accent-color: #3a0ca3;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.box {
+    padding: 1.2em 2em;
+    width: 30%;
+    text-align: center;
+    border-radius: 40px;
+    border: .1rem solid #3a0ca3;
+    color: #3a0ca3;
+}
+
+.box-list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    margin: .7rem 0;
+}
+
+.box-list__item {
+    display: flex;
+    padding: .7em 0;
+    gap: .5rem;
+}
+
+.box-list__item > p {
+    white-space: normal;
+    text-align: left;
+    margin-right: .7rem;
+}
+
+form > .box-form__input {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+input[type="checkbox"]:checked + p {
+    text-decoration: line-through;
+}
+
+.box-timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.timer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.timer-output {
+    display: flex;
+    align-items: center;
+    font-size: 4rem;
+    border: 2px solid black;
+    border-radius: 50%;
+    padding: 0 .7em;
+    aspect-ratio: 1;
+    border-color: #8338ec;
+}
+
+.timer-btn {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+
+
+
+
+
