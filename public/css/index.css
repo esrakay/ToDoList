@@ -71,7 +71,7 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-
+    box-shadow: 0 0 10px #2B2D42;
 }
 
 input[type="text"] + button, .btn {
@@ -99,19 +99,23 @@ input[type="checkbox"] {
 
 .box {
     padding: 1.2em 2em;
-    width: 30%;
     text-align: center;
     border-radius: 40px;
     background-color: var(--clr-light);
 }
 
+.box-todo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .box-list {
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
     height: 250px;
-    margin: .7rem 0;
     gap: .5rem;
     color: var(--clr-dark-blue);
 }
