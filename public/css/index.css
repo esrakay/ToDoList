@@ -28,15 +28,24 @@ ul {
 
 /*  */
 :root {
-    --ff-caveat: "Caveat", cursive;
+    --ff-roboto: "Roboto", sans-serif;
+
+    --clr-dark-blue: #2B2D42;
+    --clr-light-blue: #8D99AE;
+    --clr-red: #EF233C;
+    --clr-light: #EDF2F4;
+    --clr-dark-red: #d90429;
+    --clr-grey: #C8C8C8;
 }
 
 body {
-    font-family: var(--ff-caveat);
+    font-family: var(--ff-roboto);
     min-height: 100vh;
     display: grid;
-    grid-template-columns: minmax(1rem, 5rem) minmax(0, 1fr) minmax(1rem, 5rem); /* hatte vorher auto statt minmax (1rem, 5rem)*/
+    grid-template-columns: minmax(1rem, 3rem) minmax(0, 1fr) minmax(1rem, 3rem); 
     grid-template-rows: minmax(0, 20%) 1fr minmax(0, 20%);
+    background-color: var(--clr-dark-blue);
+    color: var(--clr-dark-blue);
 }
 
 main {
@@ -55,11 +64,14 @@ input[type="text"] {
     flex-grow: 1;
     border-radius: 40px;
     padding: .5em 1em;
-    border-color: #8338ec;
+    color: var(--clr-dark-blue);
+    background-color: var(--clr-light);
+    border: 2px solid var(--clr-light-blue);
+    outline: none;
 }
 
 input[type="text"]:focus {
-    outline: none;
+
 }
 
 input[type="text"] + button, .btn {
@@ -68,8 +80,9 @@ input[type="text"] + button, .btn {
     display: grid;
     place-items: center;
     padding: 0 1em;
-    background-color: transparent;
-    border-color: #3a0ca3;
+    background-color: var(--clr-red);
+    border: none;
+    color: var(--clr-light);
 }
 
 input[type="text"] + button:hover {
@@ -77,7 +90,7 @@ input[type="text"] + button:hover {
 }
 
 input[type="checkbox"] {
-    accent-color: #3a0ca3;
+    accent-color: var(--clr-dark-red);
 }
 
 .btn {
@@ -89,23 +102,26 @@ input[type="checkbox"] {
     width: 30%;
     text-align: center;
     border-radius: 40px;
-    border: .1rem solid #3a0ca3;
-    color: #3a0ca3;
+    background-color: var(--clr-light);
 }
 
 .box-list {
-    overflow-y: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
     height: 250px;
     margin: .7rem 0;
+    gap: .5rem;
+    color: var(--clr-dark-blue);
 }
 
 .box-list__item {
     display: flex;
-    padding: .7em 0;
+    padding: .7em .2em;
     gap: .5rem;
+    margin-right: 1rem;
+    border-radius: 10px;
 }
 
 .box-list__item > p {
@@ -143,11 +159,12 @@ input[type="checkbox"]:checked + p {
     display: flex;
     align-items: center;
     font-size: 4rem;
-    border: 2px solid black;
+    border: 1px solid black;
     border-radius: 50%;
     padding: 0 .7em;
     aspect-ratio: 1;
-    border-color: #8338ec;
+    background-color: var(--clr-light);
+    color: var(--clr-dark-blue);
 }
 
 .timer-btn {
