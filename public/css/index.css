@@ -123,7 +123,6 @@ input[type="checkbox"] {
 
 .box-list__item {
     display: flex;
-    flex-grow: 0;
     padding: .7em .2em;
     gap: .5rem;
     margin-right: 1rem;
