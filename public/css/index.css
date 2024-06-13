@@ -26,6 +26,10 @@ ul {
     list-style: none;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 /*  */
 :root {
     --ff-roboto: "Roboto", sans-serif;
@@ -85,16 +89,8 @@ input[type="text"] + button, .btn {
     color: var(--clr-light);
 }
 
-input[type="text"] + button:hover {
-    cursor: pointer;
-}
-
 input[type="checkbox"] {
     accent-color: var(--clr-dark-red);
-}
-
-.btn {
-    cursor: pointer;
 }
 
 .box {
@@ -123,16 +119,47 @@ input[type="checkbox"] {
 
 .box-list__item {
     display: flex;
-    padding: .7em .2em;
+    justify-content: space-between;
+    align-items: center;
     gap: .5rem;
-    margin-right: 1rem;
     border-radius: 10px;
 }
 
-.box-list__item > p {
+.box-list__item > div:first-child {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+}
+
+.box-list__item > div:last-child button {
+    background: none;
+    border: none;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--clr-dark-red);
+}
+
+.box-list__item > div:last-child button:hover {
+    animation: shake .5s infinite;
+}
+
+@keyframes shake {
+    0%, 50%, 100% {
+        transform: rotate(0deg);
+    } 
+    25% {
+        transform: rotate(15deg);
+    } 
+    75% {
+        transform: rotate(-15deg);
+    }
+}
+
+.box-list__item p {
     white-space: normal;
     text-align: left;
-    margin-right: .7rem;
 }
 
 form > .box-form__input {
