@@ -9,7 +9,8 @@ const date = require(__dirname + "/public/js/date.js");
 let taskList = [
     {
         id: uuidv4(),
-        text: "Some task"
+        text: "Some task",
+        isChecked: false,
     }    
 ]
 
@@ -28,15 +29,22 @@ app.get("/", (req, res)=> {
 })
 
 app.post("/", (req, res)=>{
-    let {todo} = req.body;
+    const {todo} = req.body;
     if (todo !== "") {
-        taskList.push({id: uuidv4(), text: todo});
+        taskList.push({id: uuidv4(), text: todo, isChecked: false});
     }
     res.redirect("/")
 })
 
+app.post("/:id", (req, res)=> {
+    const { id } = req.params;
+    task = taskList.filter(task => task.id === id)[0];
+    task.isChecked = !task.isChecked;
+    res.redirect("/");
+})
+
 app.delete("/:id", (req, res)=> {
-    let {id} = req.params;
+    const { id } = req.params;
     taskList = taskList.filter(task => task.id !== id);
     res.redirect("/");
 })
