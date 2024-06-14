@@ -26,8 +26,10 @@
                     <% for (let task of taskList) { %>
                         <div class="box-list__item">
                             <div>
-                                <input type="checkbox" name="task">
-                                <p><%= task.text %></p>
+                                <form action="/<%= task.id %>" method="POST">
+                                    <input type="checkbox" name="check" onchange="this.form.submit()" <%= task.isChecked ? "checked": ""%>>
+                                    <p><%= task.text %></p>
+                                </form>
                             </div>
                             <div>
                                 <form action="/<%= task.id %>?_method=DELETE" method="POST">
