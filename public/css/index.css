@@ -137,7 +137,7 @@ input[type="checkbox"] {
     border-radius: 10px;
 }
 
-.box-list__item > div:first-child {
+.box-list__item > div:first-child > form {
     display: flex;
     align-items: center;
     gap: .7rem;
