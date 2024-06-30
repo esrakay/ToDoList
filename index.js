@@ -8,6 +8,8 @@ const date = require(__dirname + "/public/js/date.js");
 require("dotenv").config();
 const mongoose = require("mongoose");
 
+const Task = require("./models/task");
+
 mongoose.connect(`mongodb://${process.env.MONGODB_IP}:${process.env.MONGODB_PORT}/${process.env.MONGODB_DB}`)
 .then(() => {
     console.log("MongoDB connected....");
@@ -33,9 +35,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(methodOverride('_method'));
 
-app.get("/", (req, res)=> {
+app.get("/", async (req, res)=> {
     const currentDate = date.getDate();
-    res.render("index", {currentDate, taskList});
+    try {
+        const tasks = await Task.find();
+        res.render("index", {currentDate, tasks});
+    } catch (err) {
+        console.log(err);
+    }
 })
 
 app.post("/", (req, res)=>{
