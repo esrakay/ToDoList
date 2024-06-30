@@ -12,5 +12,10 @@ const taskSchema = new mongoose.Schema({
     }
 })
 
+taskSchema.methods.toggleChecked = function() {
+    this.checked = !this.checked;
+    return this.save();
+}
+
 const Task = mongoose.model("Task", taskSchema);
 module.exports = Task;
