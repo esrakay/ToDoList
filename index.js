@@ -67,9 +67,13 @@ app.post("/:id", async (req, res)=> {
     res.redirect("/");
 })
 
-app.delete("/:id", (req, res)=> {
-    const { id } = req.params;
-    taskList = taskList.filter(task => task.id !== id);
+app.delete("/:id", async (req, res)=> {
+    try {
+        const { id } = req.params;
+        const deletedTask = await Task.findByIdAndDelete(id);
+    } catch (err) {
+        console.log(err);
+    }
     res.redirect("/");
 })
 
