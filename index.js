@@ -5,9 +5,9 @@ const methodOverride = require("method-override");
 const {v4: uuidv4} = require("uuid");
 const PORT = 3000;
 const date = require(__dirname + "/public/js/date.js");
-
 require("dotenv").config();
 const mongoose = require("mongoose");
+
 mongoose.connect(`mongodb://${process.env.MONGODB_IP}:${process.env.MONGODB_PORT}/${process.env.MONGODB_DB}`)
 .then(() => {
     console.log("MongoDB connected....");
