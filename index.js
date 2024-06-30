@@ -56,10 +56,14 @@ app.post("/", async (req, res)=>{
     res.redirect("/")
 })
 
-app.post("/:id", (req, res)=> {
-    const { id } = req.params;
-    task = taskList.filter(task => task.id === id)[0];
-    task.isChecked = !task.isChecked;
+app.post("/:id", async (req, res)=> {
+    try {
+        const { id } = req.params;
+        const task = await Task.findById(id);
+        await task.toggleChecked();
+    } catch (err) {
+        console.log(err);
+    }
     res.redirect("/");
 })
 
