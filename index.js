@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const methodOverride = require("method-override");
-const {v4: uuidv4} = require("uuid");
 const PORT = 3000;
 const date = require(__dirname + "/public/js/date.js");
 require("dotenv").config();
@@ -17,14 +16,6 @@ mongoose.connect(`mongodb://${process.env.MONGODB_IP}:${process.env.MONGODB_PORT
 .catch(err => {
     console.error("Could not connect to MongoDB:", err);
 })
-
-let taskList = [
-    {
-        id: uuidv4(),
-        text: "Some task",
-        isChecked: false,
-    }    
-]
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
