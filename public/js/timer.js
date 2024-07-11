@@ -1,23 +1,25 @@
-const WORK_MIN = 1;
-const BREAK_MIN = 2;
-const LONG_BREAK_MIN = 3; 
+const WORK_MIN = 25;
+const BREAK_MIN = 5;
+const LONG_BREAK_MIN = 30; 
 
 const btn = document.querySelector(".timer-btn button");
-const timerOutput = document.querySelector(".timer-output");
+const timerOutput = document.querySelector(".timer-display");
+const timerStatus = document.querySelector(".timer-status");
 let counter = 1;
 
 
 const startTimer = async function() {
     if (counter % 8 == 0) {
-        updateTimer(LONG_BREAK_MIN); 
+        updateTimer(LONG_BREAK_MIN, "Break"); 
     } else if (counter % 2 == 0) {
-        updateTimer(BREAK_MIN); 
+        updateTimer(BREAK_MIN, "Break"); 
     } else if (counter % 2 == 1) {
-        updateTimer(WORK_MIN);
+        updateTimer(WORK_MIN, "Work");
     }
 }
 
-const updateTimer = function(minutes) {
+const updateTimer = function(minutes, status) {
+    timerStatus.innerHTML = `${status}`;
     let time = minToSec(minutes);
     let intervalId = setInterval(()=> {
         if (time >= 0) {
