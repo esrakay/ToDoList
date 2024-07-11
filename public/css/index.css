@@ -189,6 +189,8 @@ input[type="checkbox"]:checked + p {
 
 .timer-output {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     font-size: 4rem;
     border: 1px solid black;
@@ -197,6 +199,10 @@ input[type="checkbox"]:checked + p {
     aspect-ratio: 1;
     background-color: var(--clr-light);
     color: var(--clr-dark-blue);
+}
+
+.timer-output > .timer-status {
+    font-size: 1.5rem;
 }
 
 .timer-btn {
