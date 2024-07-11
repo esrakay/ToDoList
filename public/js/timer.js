@@ -6,19 +6,29 @@ const btn = document.querySelector(".timer-btn button");
 const timerOutput = document.querySelector(".timer-display");
 const timerStatus = document.querySelector(".timer-status");
 let counter = 1;
+let hasTimerStarted = false; 
 
 
 const startTimer = async function() {
-    if (counter % 8 == 0) {
-        updateTimer(LONG_BREAK_MIN, "Break"); 
-    } else if (counter % 2 == 0) {
-        updateTimer(BREAK_MIN, "Break"); 
-    } else if (counter % 2 == 1) {
-        updateTimer(WORK_MIN, "Work");
+    if (!hasTimerStarted) {
+        hasTimerStarted = true; 
+        const {duration, type} = determinePeriodType(counter); 
+        updateTimer(duration, type, counter); 
     }
 }
 
-const updateTimer = function(minutes, status) {
+const determinePeriodType = (periodCounter) => {
+    if (periodCounter % 8 === 0) {
+        return { duration: LONG_BREAK_MIN, type: "Break" };
+    } else if (periodCounter % 2 === 0) {
+        return { duration: BREAK_MIN, type: "Break" };
+    } else {
+        return { duration: WORK_MIN, type: "Work" };
+    }
+};
+
+const updateTimer = function(minutes, status, counter) {
+    let period = counter; 
     timerStatus.innerHTML = `${status}`;
     let time = minToSec(minutes);
     let intervalId = setInterval(()=> {
@@ -29,8 +39,9 @@ const updateTimer = function(minutes, status) {
             time -=1; 
         } else {
             clearInterval(intervalId);
-            counter += 1;
-            startTimer();
+            period += 1;
+            const {duration, type} = determinePeriodType(period);
+            updateTimer(duration, type, period);
         }
     }, 1000)
 }
