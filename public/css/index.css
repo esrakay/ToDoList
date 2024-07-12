@@ -74,6 +74,12 @@ main {
     justify-content: space-evenly;
 }
 
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /*  */
 
 input[type="text"] {
@@ -130,16 +136,12 @@ input[type="checkbox"] {
 }
 
 .box-list__item {
-    display: flex;
     justify-content: space-between;
-    align-items: center;
     gap: .5rem;
     border-radius: 10px;
 }
 
 .box-list__item > div:first-child > form {
-    display: flex;
-    align-items: center;
     gap: .7rem;
 }
 
@@ -147,9 +149,6 @@ input[type="checkbox"] {
     background: none;
     border: none;
     aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: var(--clr-dark-red);
 }
 
@@ -163,8 +162,6 @@ input[type="checkbox"] {
 }
 
 form > .box-form__input {
-    display: flex;
-    align-items: center;
     gap: 1em;
 }
 
@@ -173,9 +170,6 @@ input[type="checkbox"]:checked + p {
 }
 
 .box-timer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border: none;
     box-shadow: none;
     background-color: transparent;
@@ -188,10 +182,7 @@ input[type="checkbox"]:checked + p {
 }
 
 .timer-output {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     font-size: 4rem;
     border: 1px solid black;
     border-radius: 50%;

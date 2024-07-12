@@ -16,7 +16,7 @@
                 <h1 class="box-date"><%= currentDate %></h1>
                 <div class="box-form">
                     <form action="/" method="POST" autocomplete="off">
-                        <div class="box-form__input">
+                        <div class="flex-center box-form__input">
                             <input type="text" id="task" name="task" autofocus>
                             <button class="btn">+</button>
                         </div>
@@ -24,16 +24,16 @@
                 </div>
                 <div class="box-list">
                     <% for (let task of tasks) { %>
-                        <div class="box-list__item">
+                        <div class="flex-center box-list__item">
                             <div>
-                                <form action="/<%= task._id %>" method="POST">
+                                <form action="/<%= task._id %>" method="POST" class="flex-center">
                                     <input type="checkbox" name="check" onchange="this.form.submit()" <%= task.checked ? "checked": ""%>>
                                     <p><%= task.text %></p>
                                 </form>
                             </div>
                             <div>
                                 <form action="/<%= task._id %>?_method=DELETE" method="POST">
-                                    <button>
+                                    <button class="flex-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
                                             <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
@@ -45,9 +45,9 @@
                     <% } %>
                 </div>
             </div>
-            <div class="box box-timer">
+            <div class="flex-center box box-timer">
                 <div class="timer">
-                    <div class="timer-output">
+                    <div class="flex-center timer-output">
                         <div class="timer-display">00:00</div>
                         <div class="timer-status">Work</div>
                     </div>
