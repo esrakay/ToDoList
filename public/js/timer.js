@@ -2,18 +2,19 @@ const WORK_MIN = 25;
 const BREAK_MIN = 5;
 const LONG_BREAK_MIN = 30; 
 
-const btn = document.querySelector(".timer-btn button");
-const timerOutput = document.querySelector(".timer-display");
+const timerBtn = document.querySelector(".timer-btn button");
+const timerDisplay = document.querySelector(".timer-display");
 const timerStatus = document.querySelector(".timer-status");
+
 let counter = 1;
 let hasTimerStarted = false; 
-
+let intervalId = null; 
 
 const startTimer = async function() {
     if (!hasTimerStarted) {
         hasTimerStarted = true; 
         const {duration, type} = determinePeriodType(counter); 
-        updateTimer(duration, type, counter); 
+        updateTimer(duration, type); 
     }
 }
 
@@ -27,38 +28,35 @@ const determinePeriodType = (periodCounter) => {
     }
 };
 
-const updateTimer = function(minutes, status, counter) {
-    let period = counter; 
-    timerStatus.innerHTML = `${status}`;
-    let time = minToSec(minutes);
-    let intervalId = setInterval(()=> {
+const updateTimerDisplay = function(minutes, seconds) {
+    const formattedMinutes = minutes.toString().padStart(2, "0");
+    const formattedSeconds = seconds.toString().padStart(2, "0"); 
+    timerDisplay.innerHTML = `${formattedMinutes}:${formattedSeconds}`;
+}
+
+const updateTimer = function(duration, type) {
+    timerStatus.innerHTML = `${type}`;
+    let time = minToSec(duration);
+
+    intervalId = setInterval(()=> {
         if (time >= 0) {
-            let leftMinutes = getMinutes(time);
-            let leftSeconds = getSeconds(time);
-            timerOutput.innerHTML = `${leftMinutes.toString().length == 1 ? "0" : ""}${leftMinutes}:${leftSeconds.toString().length == 1 ? "0" : ""}${leftSeconds}`;
+            let minutes = getMinutes(time);
+            let seconds = getSeconds(time);
+            updateTimerDisplay(minutes, seconds); 
             time -=1; 
         } else {
             clearInterval(intervalId);
-            period += 1;
-            const {duration, type} = determinePeriodType(period);
-            updateTimer(duration, type, period);
+            counter += 1;
+            const {duration, type} = determinePeriodType(counter);
+            updateTimer(duration, type);
         }
     }, 1000)
 }
 
-btn.addEventListener("click", startTimer);
+const minToSec = (minutes) => minutes * 60; 
 
-const minToSec = function (minutes) {
-    totalSeconds = minutes * 60;
-    return totalSeconds;
-}
+const getMinutes = (seconds) => Math.floor(seconds / 60);
 
-const getMinutes = function (seconds) {
-    totalMinutes = Math.floor(seconds / 60);
-    return totalMinutes;
-}
+const getSeconds = (seconds) => Math.floor(seconds % 60);
 
-const getSeconds = function (seconds) {
-    totalSeconds = Math.floor(seconds % 60);
-    return totalSeconds; 
-}
+timerBtn.addEventListener("click", startTimer);
