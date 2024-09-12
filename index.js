@@ -37,7 +37,7 @@ app.get("/", async (req, res)=> {
 })
 
 app.post("/", async (req, res)=>{
-    const {task} = req.body;
+    const {task} = req.body; 
     try {
         const newTask = new Task({text: task, checked: false});
         await newTask.save(); 
