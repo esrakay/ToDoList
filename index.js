@@ -4,6 +4,7 @@ const path = require("path");
 const methodOverride = require("method-override");
 const PORT = 3000;
 const date = require(__dirname + "/public/js/date.js");
+const ejsMate = require("ejs-mate");
 require("dotenv").config();
 const mongoose = require("mongoose");
 
@@ -17,6 +18,7 @@ mongoose.connect(`mongodb://${process.env.MONGODB_IP}:${process.env.MONGODB_PORT
     console.error("Could not connect to MongoDB:", err);
 })
 
+app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
