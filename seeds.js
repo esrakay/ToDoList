@@ -21,11 +21,16 @@ const seedTasks = [
     }
 ]
 
-Task.insertMany(seedTasks)
-    .then(res => {
-        console.log(res);
-    })
-    .catch(err => {
-        console.log(err);
-    })
+const seedDB = async () => {
+    try {
+        await Task.deleteMany({});
+        await Task.insertMany(seedTasks);
+    } catch (err) {
+        console.log("Error during seeding:", err.message);
+    }
+}
+
+seedDB().then((data) => {
+    mongoose.connection.close();
+})
 
