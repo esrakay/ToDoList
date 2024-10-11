@@ -205,6 +205,11 @@ input[type="checkbox"]:checked + p {
     background-color: #a5041f;
 }
 
+.error {
+   text-align: center;
+   color: var(--clr-light);
+}
+
 
 
 
