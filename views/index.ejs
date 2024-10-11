@@ -5,7 +5,7 @@
         <div class="box-form">
             <form action="/" method="POST" autocomplete="off">
                 <div class="flex-center box-form__input">
-                    <input type="text" id="task" name="task" autofocus>
+                    <input type="text" id="task" name="task" autofocus required>
                     <button class="btn">+</button>
                 </div>
             </form>
@@ -15,8 +15,8 @@
                 <div class="flex-center box-list__item">
                     <div>
                         <form action="/<%= task._id %>" method="POST" class="flex-center">
-                            <input type="checkbox" name="check" onchange="this.form.submit()" <%= task.checked ? "checked": ""%>>
-                            <p><%= task.text %></p>
+                            <input type="checkbox" id="<%= task._id %>" class="check" name="check" onchange="this.form.submit()" <%= task.checked ? "checked": ""%> required>
+                            <label for="<%= task._id %>"><%= task.text %></label>
                         </form>
                     </div>
                     <div>
