@@ -5,6 +5,8 @@ const methodOverride = require("method-override");
 const PORT = 3000;
 const date = require(__dirname + "/public/js/date.js");
 const ejsMate = require("ejs-mate");
+const catchAsync = require('./utils/catchAsync');
+const ExpressError = require('./utils/ExpressError');
 require("dotenv").config();
 const mongoose = require("mongoose");
 
@@ -28,50 +30,40 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(methodOverride('_method'));
 
-app.get("/", async (req, res)=> {
+app.get("/", catchAsync(async (req, res)=> {
     const currentDate = date.getDate();
-    try {
-        const tasks = await Task.find();
-        res.render("index", {currentDate, tasks});
-    } catch (err) {
-        console.log(err);
-    }
-})
+    const tasks = await Task.find();
+    res.render("index", {currentDate, tasks});
+}))
 
-app.post("/", async (req, res)=>{
+app.post("/", catchAsync(async (req, res)=>{
     const {task} = req.body; 
-    try {
-        const newTask = new Task({text: task, checked: false});
-        await newTask.save(); 
-    } catch (err) {
-        console.log(err);
-    }
+    const newTask = new Task({text: task, checked: false});
+    await newTask.save(); 
     res.redirect("/")
-})
+}))
 
-app.post("/:id", async (req, res)=> {
-    try {
-        const { id } = req.params;
-        const task = await Task.findById(id);
-        await task.toggleChecked();
-    } catch (err) {
-        console.log(err);
-    }
+app.post("/:id", catchAsync(async (req, res)=> {
+    const { id } = req.params;
+    const task = await Task.findById(id);
+    await task.toggleChecked();
     res.redirect("/");
-})
+}))
 
-app.delete("/:id", async (req, res)=> {
-    try {
-        const { id } = req.params;
-        const deletedTask = await Task.findByIdAndDelete(id);
-    } catch (err) {
-        console.log(err);
-    }
+app.delete("/:id", catchAsync(async (req, res)=> {
+    const { id } = req.params;
+    const deletedTask = await Task.findByIdAndDelete(id);
     res.redirect("/");
+}))
+
+app.all("*", (req, res, next)=> {
+    next(new ExpressError(404, "Page not found"))
 })
 
-app.get("*", (req, res)=> {
-    res.send("Error");
+app.use((err, req, res, next) => {
+    const {status = 500} = err;
+    if (!err.message) err.message = "Oh no, something went wrong";
+    res.status(status).send(err.message);
 })
 
 app.listen(PORT, ()=>{
