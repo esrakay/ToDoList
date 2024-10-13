@@ -9,7 +9,7 @@ const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
 require("dotenv").config();
 const mongoose = require("mongoose");
-
+const {validateTask} = require('./middleware')
 const Task = require("./models/task");
 
 mongoose.connect(`mongodb://${process.env.MONGODB_IP}:${process.env.MONGODB_PORT}/${process.env.MONGODB_DB}`)
@@ -36,7 +36,7 @@ app.get("/", catchAsync(async (req, res)=> {
     res.render("index", {currentDate, tasks});
 }))
 
-app.post("/", catchAsync(async (req, res)=>{
+app.post("/", validateTask, catchAsync(async (req, res)=>{
     const {task} = req.body; 
     const newTask = new Task({text: task, checked: false});
     await newTask.save(); 
