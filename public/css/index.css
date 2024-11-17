@@ -34,12 +34,29 @@ button:hover {
 :root {
     --ff-roboto: "Roboto", sans-serif;
 
-    --clr-dark-blue: #2B2D42;
-    --clr-light-blue: #8D99AE;
-    --clr-red: #EF233C;
-    --clr-light: #EDF2F4;
-    --clr-dark-red: #d90429;
-    --clr-grey: #C8C8C8;
+    --clr-bg: 0 0% 100%; 
+    --clr-todo-box: 0 0% 100%; 
+    --clr-text: 0 0% 12%; 
+    --clr-btn: 265 100% 46%; 
+    --clr-input: 265 100% 46%; 
+    --clr-timer-bg: 265 100% 46%;
+    --clr-timer-text: 0 0% 100%;
+    --clr-btn-text: 0 0% 100%;
+    --clr-box-shadow: 0 0% 63%;
+    --clr-btn-hover: 265 98% 41%;
+}
+
+[data-theme="dark"] {
+    --clr-bg: 0 0% 7%; 
+    --clr-todo-box: 0 0% 12%; 
+    --clr-text: 0 0% 85%; 
+    --clr-btn: 291 95% 75%; 
+    --clr-input: 235 21% 21%; 
+    --clr-timer-bg: 0 0% 12%;
+    --clr-timer-text: 0 0% 85%;
+    --clr-btn-text: 0 0% 12%;
+    --clr-box-shadow: none; 
+    --clr-btn-hover: 291 95% 65%; 
 }
 
 @keyframes shake {
@@ -60,8 +77,8 @@ body {
     display: grid;
     grid-template-columns: minmax(1rem, 3rem) minmax(0, 1fr) minmax(1rem, 3rem); 
     grid-template-rows: minmax(0, 20%) 1fr minmax(0, 20%);
-    background-color: var(--clr-dark-blue);
-    color: var(--clr-dark-blue);
+    background-color: hsl(var(--clr-bg));
+    color: hsl(var(--clr-text));
 }
 
 main {
@@ -86,14 +103,10 @@ input[type="text"] {
     flex-grow: 1;
     border-radius: 40px;
     padding: .5em 1em;
-    color: var(--clr-dark-blue);
-    background-color: var(--clr-light);
-    border: 2px solid var(--clr-light-blue);
+    color: var(--clr-text);
+    background-color: hsl(var(--clr-todo-box));
+    border: 2px solid hsl(var(--clr-text));
     outline: none;
-}
-
-input[type="text"]:focus {
-    box-shadow: 0 0 10px #2B2D42;
 }
 
 .btn {
@@ -102,20 +115,21 @@ input[type="text"]:focus {
     display: grid;
     place-items: center;
     padding: 0 1em;
-    background-color: var(--clr-red);
+    background-color: hsl(var(--clr-btn));
     border: none;
-    color: var(--clr-light);
+    color: hsl(var(--clr-btn-text));
 }
 
 input[type="checkbox"] {
-    accent-color: var(--clr-dark-red);
+    accent-color: hsl(var(--clr-btn));
 }
 
 .box {
     padding: 1.2em 2em;
     text-align: center;
     border-radius: 40px;
-    background-color: var(--clr-light);
+    background-color: hsl(var(--clr-todo-box));
+    box-shadow: 0 3px 5px 1px hsl(var(--clr-box-shadow));
 }
 
 .box-todo {
@@ -131,7 +145,7 @@ input[type="checkbox"] {
     flex-direction: column;
     height: 250px;
     gap: .5rem;
-    color: var(--clr-dark-blue);
+    color: hsl(var(--clr-text));
     width: 400px;
 }
 
@@ -149,7 +163,7 @@ input[type="checkbox"] {
     background: none;
     border: none;
     aspect-ratio: 1;
-    color: var(--clr-dark-red);
+    color: hsl(var(--clr-btn));
 }
 
 .box-list__item > div:last-child button:hover {
@@ -188,8 +202,8 @@ input[type="checkbox"]:checked + p {
     border-radius: 50%;
     padding: 0 .7em;
     aspect-ratio: 1;
-    background-color: var(--clr-light);
-    color: var(--clr-dark-blue);
+    background-color: hsl(var(--clr-timer-bg));
+    color: hsl(var(--clr-timer-text));
 }
 
 .timer-output > .timer-status {
@@ -202,14 +216,13 @@ input[type="checkbox"]:checked + p {
 }
 
 .btn:hover {
-    background-color: #a5041f;
+    background-color: hsl(var(--clr-btn-hover));
 }
 
 .error {
    text-align: center;
-   color: var(--clr-light);
+   color: var(--clr-text);
 }
-
 
 
 

@@ -1,0 +1,12 @@
+<%- layout('layouts/boilerplate') %>
+<div>
+    <div class="todo-list">
+    <% for (let todo of todos) { %> 
+        <div class="box">
+            <p><%= todo.name%></p>
+            <a href="/todos/<%= todo._id%>">View</a>
+        </div>        
+    <% } %>
+    </div>
+    <a href="/todos/new" class="add-todo-btn">Add new Todo</a>
+</div>
