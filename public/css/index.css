@@ -77,12 +77,19 @@ body {
     display: grid;
     grid-template-columns: minmax(1rem, 3rem) minmax(0, 1fr) minmax(1rem, 3rem); 
     grid-template-rows: minmax(0, 20%) 1fr minmax(0, 20%);
+    gap: 2rem;
     background-color: hsl(var(--clr-bg));
     color: hsl(var(--clr-text));
 }
 
 main {
     grid-area: 2 / 2 / span 1 / span 1;
+}
+
+.container {
+    width: 80%;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .flex {
@@ -224,7 +231,8 @@ input[type="checkbox"]:checked + p {
    color: var(--clr-text);
 }
 
-
-
-
-
+@media (max-width: 800px) {
+    .box-container {
+        flex-direction: column;
+    }
+}
