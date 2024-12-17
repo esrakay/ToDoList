@@ -10,27 +10,18 @@ mongoose.connect(`mongodb://${process.env.MONGODB_IP}:${process.env.MONGODB_PORT
     console.error("Could not connect to MongoDB:", err);
 })
 
-const seedTasks = [
-    {
-        text: "Do homework",
-        checked: false
-    }, 
-    {
-        text: "Do dishes",
-        checked: true
-    }
-]
-
 const seedDB = async () => {
     try {
-        await Task.deleteMany({});
-        await Task.insertMany(seedTasks);
+        const task1 = new Task({text: "Do homework", checked: false});
+        const task2 = new Task({text: "Do dishes", checked: true})
+        await task1.save(); 
+        await task2.save(); 
     } catch (err) {
         console.log("Error during seeding:", err.message);
     }
 }
 
-seedDB().then((data) => {
+seedDB().then(() => {
     mongoose.connection.close();
 })
 
